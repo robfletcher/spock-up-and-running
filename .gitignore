@@ -1,0 +1,21 @@
+# Gradle
+build/
+/.gradle/
+/.gradletasknamecache
+
+# Maven
+target/
+
+# OSX
+.DS_Store
+
+# IntelliJ IDEA
+/.idea/
+*.ipr
+*.iml
+*.iws
+/out/
+
+# H2
+*.db
+/dump.rdb

@@ -1,0 +1,5 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+  testCompile project(":code:spock-extensions")
+}

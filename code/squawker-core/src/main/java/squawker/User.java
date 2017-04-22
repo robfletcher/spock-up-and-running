@@ -1,0 +1,118 @@
+/*
+ * Copyright 2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package squawker;
+
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.*;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
+public class User {
+
+  protected final Serializable id;
+  private final String username;
+  protected final Set<User> following = Sets.newHashSet();
+  protected final List<Message> posts = Lists.newArrayList();
+  private final Instant registered;
+
+  public User(String username) {
+    this(username, Instant.now());
+  }
+
+  public User(String username, Instant registered) {
+    this(UUID.randomUUID(), username, registered);
+  }
+
+  public User(Serializable id, String username, Instant registered) {
+    if (username == null || username.length() == 0) {
+      throw new IllegalArgumentException("username must be at least 1 character long");
+    }
+    this.id = id;
+    this.username = username;
+    this.registered = registered;
+  }
+
+  public Serializable getId() {
+    return id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public Instant getRegistered() {
+    return registered;
+  }
+
+  public Set<User> following() {
+    return Collections.unmodifiableSet(following);
+  }
+
+  public void follow(User user) {
+    if (this.equals(user)) {
+      throw new IllegalArgumentException("a user cannot follow themself");
+    }
+    following.add(user);
+  }
+
+  public boolean follows(User user) {
+    return following.contains(user);
+  }
+
+  public Message post(String messageText, Instant postedAt) {
+    Message message = new Message(this, messageText, postedAt);
+    posts.add(0, message);
+    return message;
+  }
+
+  public List<Message> posts() {
+    return Collections.unmodifiableList(posts);
+  }
+
+  public List<Message> timeline() {
+    List<Message> timeline = new ArrayList<Message>();
+    timeline.addAll(posts);
+    for (User user : following) {
+      timeline.addAll(user.posts);
+    }
+    Collections.sort(timeline);
+    return Collections.unmodifiableList(timeline);
+  }
+
+  @Override
+  public String toString() {
+    return "@" + username;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == null) {
+      return false;
+    }
+    if (o instanceof User) {
+      User other = (User) o;
+      return username.equals(other.username);
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return username.hashCode();
+  }
+
+}

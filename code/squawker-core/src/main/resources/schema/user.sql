@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS user (
+  id         BIGINT PRIMARY KEY AUTO_INCREMENT,
+  username   VARCHAR(32) UNIQUE,
+  registered TIMESTAMP
+);

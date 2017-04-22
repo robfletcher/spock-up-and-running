@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    name: squawker
+    initialize: true
+    schema: classpath*:schema/user.sql,classpath*:schema/message.sql,classpath*:schema/following.sql,classpath*:schema/mention.sql,classpath*:schema/api_token.sql,classpath*:schema/scheduled_message.sql
+
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+
+squawker.test.data: false
+
+---
+
+spring:
+  profiles: test
+
+# tag::integration-profile[]
+---
+
+spring:
+  profiles: integration
+
+  datasource:
+    data: classpath*:fixtures/users.sql
+# end::integration-profile[]
+
+---
+
+spring:
+  profiles: local
+
+  datasource:
+    data: classpath*:fixtures/local.sql
+
+squawker.test.data: true

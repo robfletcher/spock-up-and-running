@@ -1,0 +1,9 @@
+apply plugin: "groovy" // <1>
+
+repositories {  
+  jcenter() // <2>
+}
+
+dependencies {
+  testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-3" // <3>
+}

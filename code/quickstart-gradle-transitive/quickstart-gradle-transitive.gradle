@@ -1,0 +1,18 @@
+apply plugin: "groovy"
+
+repositories {
+  jcenter()
+}
+
+// tag::force-groovy-version[]
+dependencies {
+  compile "org.codehaus.groovy:groovy:2.4.8" // <1>
+  testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
+}
+
+configurations.all {
+  resolutionStrategy {
+    force "org.codehaus.groovy:groovy-all:2.4.8" // <2>
+  }
+}
+// end::force-groovy-version[]

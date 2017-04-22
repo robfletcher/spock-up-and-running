@@ -1,0 +1,9 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+  compile project(":code:squawker-core")
+  compile libraries.jacksonDatabind
+  compile libraries.jacksonJsr310
+
+  testCompile libraries.jerry
+}

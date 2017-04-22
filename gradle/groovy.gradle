@@ -1,0 +1,46 @@
+apply plugin: "groovy"
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile libraries.groovy
+  testCompile libraries.spock
+  testCompile libraries.spockReports
+}
+
+/*
+ * Allow other sub-projects to depend on tests
+ */
+task jarTest(type: Jar) {
+  from sourceSets.test.output
+  classifier = 'test'
+}
+
+configurations {
+  testOutput
+}
+
+artifacts {
+  testOutput jarTest
+}
+
+/*
+ * Enable Groovy compiler optimizations
+ */
+tasks.withType(GroovyCompile) {
+  groovyOptions.optimizationOptions.indy = true
+}
+
+/*
+ * Force canonical library versions
+ */
+configurations.all {
+  resolutionStrategy {
+    dependencySubstitution {
+      substitute module("org.codehaus.groovy:groovy") with module("org.codehaus.groovy:groovy-all:$versions.groovy")
+      substitute module("org.hamcrest:hamcrest-core") with module("org.hamcrest:hamcrest-all:1.3")
+    }
+  }
+}

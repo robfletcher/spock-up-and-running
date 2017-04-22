@@ -1,0 +1,7 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+  compile libraries.spock
+  testCompile libraries.jdbi
+  testCompile libraries.h2
+}

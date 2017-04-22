@@ -1,0 +1,7 @@
+<figure class="sq-message panel panel-default">
+  <figcaption class="sq-message-heading panel-heading">
+    <span class="sq-posted-by"><a href="#/user/{{message.postedBy.username}}">@{{message.postedBy.username}}</a></span>
+    <time class="sq-posted-at pull-right" data-moment-from-now datetime="{{message.postedAt}}"></time>
+  </figcaption>
+  <div class="sq-message-text panel-body lead" data-ng-bind-html="message.text | squawkerTokens"></div>
+</figure>

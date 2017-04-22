@@ -1,0 +1,48 @@
+ext {
+  versions = [
+    geb         : "1.1.1",
+    groovy      : "2.4.10",
+    jackson     : "2.8.8",
+    junit       : "2.8.2",
+    selenium    : "3.4.0",
+    spock       : "1.1-groovy-2.4-rc-4",
+    springBoot  : "1.5.3.RELEASE",
+    asciidoctorj: "1.5.5"
+  ]
+  libraries = [
+    cglib             : dependencies.create("cglib:cglib-nodep:3.2.4"),
+    geb               : dependencies.create("org.gebish:geb-junit4:$versions.geb"),
+    gebSpock          : dependencies.create("org.gebish:geb-spock:$versions.geb"),
+    groovy            : dependencies.create("org.codehaus.groovy:groovy-all:$versions.groovy:indy"),
+    guava             : dependencies.create("com.google.guava:guava:21.0"),
+    h2                : dependencies.create("com.h2database:h2:1.4.193"),
+    hamcrest          : dependencies.create("org.hamcrest:hamcrest-all:1.3"),
+    httpClient        : dependencies.create("org.apache.httpcomponents:httpclient:4.5.3"),
+    jacksonDatabind   : dependencies.create("com.fasterxml.jackson.core:jackson-databind:$versions.jackson"),
+    jacksonJdk8       : dependencies.create("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$versions.jackson"),
+    jacksonJsr310     : dependencies.create("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$versions.jackson"),
+    jdbi              : dependencies.create("org.jdbi:jdbi:2.78"),
+    jdbiTime          : dependencies.create("co.freeside.jdbi-time:jdbi-time:1.1"),
+    jerry             : dependencies.create("org.jodd:jodd-lagarto:3.8.1"),
+    jmock             : dependencies.create("org.jmock:jmock-junit4:$versions.junit"),
+    jmockLegacy       : dependencies.create("org.jmock:jmock-legacy:$versions.junit"),
+    rxjava            : dependencies.create("com.netflix.rxjava:rxjava-core:0.20.7"),
+    seleniumChrome    : dependencies.create("org.seleniumhq.selenium:selenium-chrome-driver:$versions.selenium"),
+    seleniumFirefox   : dependencies.create("org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"),
+    spock             : dependencies.create("org.spockframework:spock-core:$versions.spock"),
+    spockGenesis      : dependencies.create("com.nagternal:spock-genesis:0.6.0"),
+    spockReports      : dependencies.create("com.athaydes:spock-reports:1.2.13"),
+    spockSpring       : dependencies.create("org.spockframework:spock-spring:$versions.spock"),
+    springBootGradle  : dependencies.create("org.springframework.boot:spring-boot-gradle-plugin:$versions.springBoot"),
+    springBootSecurity: dependencies.create("org.springframework.boot:spring-boot-starter-security"),
+    springBootTest    : dependencies.create("org.springframework.boot:spring-boot-starter-test"),
+    springBootWeb     : dependencies.create("org.springframework.boot:spring-boot-starter-web"),
+    springJdbc        : dependencies.create("org.springframework:spring-jdbc"),
+    springTx          : dependencies.create("org.springframework:spring-tx"),
+    unirest           : dependencies.create("com.mashape.unirest:unirest-java:1.4.9"),
+    webDriverManager  : dependencies.create("io.github.bonigarcia:webdrivermanager:1.5.1") {
+      exclude module: "selenium-java"
+      exclude module: "htmlunit-driver"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+  compile project(":code:squawker-core")
+  compile libraries.rxjava
+}

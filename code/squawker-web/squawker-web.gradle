@@ -1,0 +1,39 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath libraries.springBootGradle
+  }
+}
+
+apply from: "$rootDir/gradle/groovy.gradle"
+apply plugin: "org.springframework.boot"
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile project(":code:squawker-rest-spring")
+
+  testCompile libraries.springBootTest
+  testCompile libraries.spockSpring
+  testCompile libraries.gebSpock
+  testCompile libraries.seleniumChrome
+  testCompile libraries.seleniumFirefox
+  testCompile libraries.webDriverManager
+}
+
+test {
+  systemProperties "geb.build.reportsDir": "$reportsDir/geb",
+    "geb.env": System.properties."geb.env" ?: "chrome"
+}
+
+springBoot {
+  mainClass = "squawker.api.Main"
+}
+
+bootRun {
+  args = ["--spring.profiles.active=local"]
+}

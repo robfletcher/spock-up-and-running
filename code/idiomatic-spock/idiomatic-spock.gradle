@@ -1,0 +1,12 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+  compile project(":code:squawker-core")
+  compile libraries.guava
+  compile libraries.jdbi
+  compile libraries.jdbiTime
+
+  testRuntime libraries.cglib
+  testRuntime libraries.h2
+}
+

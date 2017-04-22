@@ -1,0 +1,7 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+  compile project(":code:squawker-core")
+  testCompile project(":code:spock-extensions")
+  testCompile libraries.h2
+}

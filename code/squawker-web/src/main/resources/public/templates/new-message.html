@@ -1,0 +1,54 @@
+<!--
+  ~ Copyright 2016 the original author or authors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<h1 class="page-header">New Message</h1>
+<form
+  class="sq-new-message"
+  name="sqNewMessage">
+  <div
+    class="form-group"
+    data-ng-class="{'has-error': sqNewMessage.text.$invalid}">
+    <label
+      for="message-text"
+      class="sr-only">Message</label>
+    <textarea
+      id="message-text"
+      name="text"
+      class="form-control input-lg"
+      rows="3"
+      placeholder="Message text&hellip;"
+      data-ng-model="message.text"
+      data-ng-maxlength="140"></textarea>
+  </div>
+  <div
+    class="alert alert-danger"
+    role="alert"
+    data-ng-if="sqNewMessage.text.$invalid">
+    <ul>
+      <li>Messages cannot be longer than 140 characters.</li>
+    </ul>
+  </div>
+  <div
+    class="btn-group btn-group-lg pull-right">
+    <button
+      type="submit"
+      name="submit"
+      class="btn btn-primary"
+      data-ng-click="post()"
+      data-ng-disabled="sqNewMessage.$invalid">Post
+    </button>
+  </div>
+</form>

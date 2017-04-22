@@ -1,0 +1,9 @@
+task build(type: Exec) {
+  workingDir project.projectDir
+  commandLine "/usr/local/bin/mvn", "test"
+}
+
+task clean(type: Exec) {
+  workingDir project.projectDir
+  commandLine "/usr/local/bin/mvn", "clean"
+}

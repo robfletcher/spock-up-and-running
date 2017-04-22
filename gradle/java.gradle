@@ -1,0 +1,6 @@
+subprojects {
+  plugins.withType(JavaPlugin) {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+  }
+}

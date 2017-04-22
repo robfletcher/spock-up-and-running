@@ -1,0 +1,14 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+  compile libraries.guava
+  compile libraries.jdbi
+  compile libraries.jdbiTime
+
+  testCompile libraries.jmock
+  testCompile libraries.jmockLegacy
+
+  testRuntime libraries.cglib
+  testRuntime libraries.h2
+}
+

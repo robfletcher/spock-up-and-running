@@ -1,0 +1,34 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+  testCompile libraries.jerry
+  testCompile libraries.unirest
+}
+
+buildscript {
+  repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+  }
+
+  dependencies {
+    classpath "com.github.jbake-org:jbake-gradle-plugin:a884597de5"
+  }
+}
+
+// tags::gradle-jbake[]
+apply plugin: "me.champeau.jbake"
+
+assemble.dependsOn bake
+
+bake {
+  clearCache = true
+}
+
+jbake {
+  version = "2.5.0"
+  pegdownVersion = "1.6.0"
+  freemarkerVersion = "2.3.23"
+  asciidoctorjVersion = versions.asciidoctorj
+}
+// end::gradle-jbake[]

@@ -1,0 +1,37 @@
+rootProject.name = "spock-up-and-running"
+
+include ":code:groovy-primer",
+  ":code:spock-extensions",
+  ":code:squawker-async",
+  ":code:squawker-cleanup",
+  ":code:squawker-core",
+  ":code:squawker-js",
+  ":code:squawker-notify",
+  ":code:squawker-spring-integration",
+  ":code:squawker-rest-spring",
+  ":code:squawker-web",
+  ":code:primary-keys",
+  ":code:site",
+  ":code:specification-basics",
+  ":code:spock-assertions",
+  ":code:managing-resources",
+  ":code:interaction-testing",
+  ":code:parameterized-specifications",
+  ":code:idiomatic-spock",
+  ":code:tdd-diamond-kata",
+  ":code:tdd-with-rxjava",
+  ":code:quickstart-gradle",
+  ":code:quickstart-gradle-groovy",
+  ":code:quickstart-gradle-transitive",
+  ":code:quickstart-maven"
+
+def setBuildFile(project) {
+  project.buildFileName = "${project.name}.gradle"
+  project.children.each {
+    setBuildFile it
+  }
+}
+
+rootProject.children.each {
+  setBuildFile it
+}

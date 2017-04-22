@@ -1,0 +1,8 @@
+apply from: "$rootDir/gradle/groovy.gradle"
+
+dependencies {
+	compile libraries.jdbi
+	compile libraries.jdbiTime
+
+	testRuntime libraries.h2
+}

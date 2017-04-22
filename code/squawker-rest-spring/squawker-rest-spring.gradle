@@ -1,0 +1,34 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath libraries.springBootGradle
+  }
+}
+
+apply from: "$rootDir/gradle/groovy.gradle"
+apply plugin: "org.springframework.boot"
+
+dependencies {
+  compile project(":code:squawker-spring-integration")
+  compile libraries.springBootSecurity
+  compile libraries.jacksonJdk8
+  compile libraries.jacksonJsr310
+
+  testCompile libraries.springBootTest
+  testCompile libraries.spockSpring
+
+  testRuntime libraries.httpClient
+}
+
+bootRepackage {
+  // this means the executable jar will be a separate jar so the regular jar
+  // can be used as a dependency in other projects otherwise the classloader
+  // can't find things under BOOT-INF/lib
+  classifier = "boot"
+}
+
+bootRun {
+  args = ["--spring.profiles.active=local"]
+}
